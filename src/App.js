@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { jsx } from "@emotion/core";
 import { Flex, Box, PseudoBox, Text, Image, Input, InputRightElement, InputGroup, Button, useToast, Icon, Heading, Link } from '@chakra-ui/core';
 import { search } from './utils/lafzi';
+import {Helmet} from 'react-helmet';
 
 function App() {
   const [keyword, setKeyword] = useState('');
@@ -53,6 +54,21 @@ function App() {
   return (
     <Box maxWidth="36rem" pb="16px" minH="100vh" width="full" mx="auto" backgroundColor="white"
       boxShadow="0 6px 18px 0 rgba(0,0,0,.2)">
+      <Helmet>
+        <meta charset="utf-8" />
+        <title>Lafzi App</title>
+        <meta name="description" content="search ayat in AlQuran" />
+        <meta itemprop="name" content="Lafzi App" />
+        <meta itemprop="description" content="search ayat in AlQuran" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Lafzi App" />
+        <meta name="twitter:description" content="search ayat in AlQuran" />
+        <meta name="twitter:image:src" content="https://lafzi-web.vercel.app/twitter.jpg" />
+        <meta name="og:title" content="Lafzi App" />
+        <meta name="og:description" content="search ayat in AlQuran" />
+        <meta name="og:image" content="https://lafzi-web.vercel.app/fb.jpg" />
+        <meta name="og:type" content="website" />
+      </Helmet>
       <Flex flex="0 0 100%" maxW="100%" flexWrap="wrap" justifyContent="center">
         <Image
           draggable="false"
