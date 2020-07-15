@@ -60,10 +60,10 @@ function App() {
         <meta name="description" content="search ayat in AlQuran" />
         <meta itemprop="name" content="Lafzi App" />
         <meta itemprop="description" content="search ayat in AlQuran" />
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Lafzi App" />
         <meta name="twitter:description" content="search ayat in AlQuran" />
-        <meta name="twitter:image:src" content="https://lafzi-web.vercel.app/twitter.jpg" />
+        <meta name="twitter:image" content="https://lafzi-web.vercel.app/twitter.jpg" />
         <meta name="og:title" content="Lafzi App" />
         <meta name="og:description" content="search ayat in AlQuran" />
         <meta name="og:image" content="https://lafzi-web.vercel.app/fb.jpg" />
