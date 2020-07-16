@@ -72,7 +72,7 @@ function App() {
       <Flex flex="0 0 100%" maxW="100%" flexWrap="wrap" justifyContent="center">
         <Image
           draggable="false"
-          maxW={{ base: "150px", lg: "200px" }}
+          maxH={{ base: "60px", lg: "85px" }}
           mt="16px"
           src="/logo.png"
           alt="Lafzi Logo"
