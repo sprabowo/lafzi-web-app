@@ -15,7 +15,7 @@ export default function Result({ ayats, status, info, onLoadMore }) {
   if (ayats && ayats.length === 0 && status === 'failed') {
     return (
       <>
-        <Box mt="24px">
+        <Box mt="24px" textAlign="center">
           <Heading as="h2" fontSize="md"><span role="img" aria-label="warning while fetching data">⚠️</span> an error occured</Heading>
         </Box>
       </>
@@ -24,7 +24,7 @@ export default function Result({ ayats, status, info, onLoadMore }) {
   if (ayats && ayats.length === 0 && status === 'success') {
     return (
       <>
-        <Box mt="24px">
+        <Box mt="24px" textAlign="center">
           <Heading as="h2" fontSize="md">no result found</Heading>
         </Box>
       </>
@@ -55,11 +55,11 @@ export default function Result({ ayats, status, info, onLoadMore }) {
         {ayats.map((ayat) => (
           <PseudoBox
             css={{
-              ".hl_block": { 
-                fontWeight: "bold" 
+              ".hl_block": {
+                fontWeight: "bold"
               },
-              "&:hover .hl_block": { 
-                backgroundColor: "#c6f6d5" 
+              "&:hover .hl_block": {
+                backgroundColor: "#c6f6d5"
               }
             }}
             key={ayat.ayat + ayat.name}
@@ -72,7 +72,7 @@ export default function Result({ ayats, status, info, onLoadMore }) {
               </Text>
             </Box>
             <Box w="100%" mt="8px" fontSize="xs">
-              <Icon name="copy" /> copy: &nbsp;  
+              <Icon name="copy" /> copy: &nbsp;
               <Button rounded="full" onClick={() => handleClipboard(`${ayat.text} \n\n\n ${ayat.trans} Q.S. ${ayat.name} (${ayat.surah}:${ayat.ayat})`, `ayat + trans`)} size="sm" my="4px" mr="8px">ayat + trans</Button>
               <Button rounded="full" onClick={() => handleClipboard(`${ayat.text} \n\n Q.S. ${ayat.name} (${ayat.surah}:${ayat.ayat})`, `ayat`)} size="sm" my="4px" mr="8px">ayat</Button>
               <Button rounded="full" onClick={() => handleClipboard(`Q.S. ${ayat.name} (${ayat.surah}:${ayat.ayat})`, `position`)} size="sm" my="4px" >position</Button>
@@ -82,7 +82,7 @@ export default function Result({ ayats, status, info, onLoadMore }) {
         {
           info && info.current_page < info.total_page &&
           <Box w="100%" mt="16px" textAlign="center">
-            <Button isLoading={buttonloading} size="sm" w={{base: "50%", lg: "30%"}} onClick={() => {
+            <Button isLoading={buttonloading} size="sm" w={{ base: "50%", lg: "30%" }} onClick={() => {
               setButtonloading(true);
               onLoadMore(parseInt(info.current_page) + 1);
             }} variant="outline" variantColor="green" rounded="full">load more</Button>
