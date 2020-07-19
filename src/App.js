@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { Global, css } from '@emotion/core';
-import { Flex, Box, Image, Input, InputRightElement, InputGroup, Button, Icon, Skeleton } from '@chakra-ui/core';
+import { Flex, Box, Image, Input, InputRightElement, InputGroup, Button, Icon, Skeleton, Link } from '@chakra-ui/core';
 import { Helmet } from 'react-helmet';
 import { search } from './utils/lafzi';
 const QuickSearch = React.lazy(() => import('./components/QuickSearch'));
@@ -20,12 +20,12 @@ function App() {
     setButtonloading(true);
     setResultloading(true);
     setStatus('loading');
+    setShowresult(true);
     try {
       const data = await search(query, page);
       if (data.data && data.data.length) {
         setResult(data.data);
         setPageinfo(data.info);
-        setShowresult(true);
       }
       setStatus('success');
     } catch (error) {
@@ -44,7 +44,6 @@ function App() {
 
   const handleQuickSearch = (args) => {
     setKeyword(args)
-    setResult([])
     handleSearch(args)
   };
 
@@ -104,13 +103,15 @@ function App() {
       <Box maxWidth="36rem" pb="16px" minH="100vh" width="full" mx="auto" backgroundColor="white"
       boxShadow="0 6px 18px 0 rgba(0,0,0,.2)">
       <Flex flex="0 0 100%" maxW="100%" flexWrap="wrap" justifyContent="center">
-        <Image
-          draggable="false"
-          maxH={{ base: "60px", lg: "85px" }}
-          mt="16px"
-          src="/logo.png"
-          alt="Lafzi Logo"
-        />
+        <Link href="/">
+          <Image
+            draggable="false"
+            maxH={{ base: "60px", lg: "85px" }}
+            mt="16px"
+            src="/logo.png"
+            alt="Lafzi Logo"
+          />
+        </Link>
       </Flex>
       <Flex flex="0 0 100%" maxW="100%" mt="16px" flexWrap="wrap">
         <InputGroup size="md" w={{ base: "full", lg: "20rem" }} mx={{ base: "24px", lg: "auto" }}>
