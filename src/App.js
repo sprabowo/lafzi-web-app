@@ -91,7 +91,9 @@ function App() {
           <Link href="/">
             <Image
               draggable="false"
-              maxH={{ base: "60px", lg: "85px" }}
+              m="0 auto"
+              htmlWidth="50%"
+              htmlHeight="60px"
               mt="16px"
               src="/logo.png"
               alt="Lafzi Logo"
