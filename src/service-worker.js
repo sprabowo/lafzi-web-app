@@ -65,6 +65,23 @@ registerRoute(
   })
 );
 
+registerRoute(
+  // Add in any other file extensions or routing criteria as needed.
+  ({ url }) =>
+    url.origin === self.location.origin &&
+    (url.pathname.endsWith(".otf") ||
+      url.pathname.endsWith(".woff") ||
+      url.pathname.endsWith(".woff2")), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+  new StaleWhileRevalidate({
+    cacheName: "fonts",
+    plugins: [
+      // Ensure that once this runtime cache reaches a maximum size the
+      // least-recently used images are removed.
+      new ExpirationPlugin({ maxEntries: 5 }),
+    ],
+  })
+);
+
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
 self.addEventListener("message", (event) => {
