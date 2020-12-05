@@ -1,4 +1,4 @@
-import { useState, Suspense, useRef, lazy } from "react";
+import { useState, Suspense, useRef, lazy, useCallback } from "react";
 import { Global, css } from "@emotion/core";
 import {
   Flex,
@@ -53,10 +53,14 @@ function App() {
     }
   };
 
+  const handleSetKeyword = (e) => setKeyword(e.target.value);
+  const memoizedHandleSK = useCallback(handleSetKeyword, []);
+
   const handleQuickSearch = (args) => {
     setKeyword(args);
     handleSearch(args);
   };
+  const memoizedHandleQS = useCallback(handleQuickSearch, []);
 
   const handleLoadMore = async (args) => {
     let nextData = await search(keyword, args);
@@ -65,6 +69,7 @@ function App() {
     setResult(tmpData);
     setPageinfo(nextData.info);
   };
+  const memoizedHandleLoadMore = useCallback(handleLoadMore, [result, keyword]);
 
   return (
     <>
@@ -140,7 +145,7 @@ function App() {
               onKeyDown={handleKeyDown}
               borderRadius="8px"
               value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
+              onChange={memoizedHandleSK}
               data-testid="search"
               pr={keyword ? "6rem" : "3rem"}
               type="text"
@@ -176,7 +181,7 @@ function App() {
           </InputGroup>
         </Flex>
         <Suspense fallback={<></>}>
-          <QuickSearch onQuickSearch={(query) => handleQuickSearch(query)} />
+          <QuickSearch onQuickSearch={memoizedHandleQS} />
           <Skeleton
             w={{ base: "calc(100% - 48px)", lg: "30rem" }}
             mx={{ base: "24px", lg: "auto" }}
@@ -188,7 +193,7 @@ function App() {
             {showresult && (
               <Result
                 info={pageinfo}
-                onLoadMore={(page) => handleLoadMore(page)}
+                onLoadMore={memoizedHandleLoadMore}
                 keyword={keyword}
                 ayats={result}
                 status={status}

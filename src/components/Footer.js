@@ -1,6 +1,7 @@
 import { Flex, Link } from "@chakra-ui/core";
+import { memo } from "react";
 
-export default function Footer() {
+function Footer() {
   return (
     <Flex
       mt="24px"
@@ -17,3 +18,6 @@ export default function Footer() {
     </Flex>
   );
 }
+
+const compare = (prev, next) => JSON.stringify(prev) === JSON.stringify(next);
+export default memo(Footer, compare);

@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { Box, Button, Text } from "@chakra-ui/core";
 
-export default function QuickSearch({ onQuickSearch }) {
+function QuickSearch({ onQuickSearch }) {
   return (
     <>
       <Box mt="16px" textAlign="center">
@@ -51,3 +52,7 @@ export default function QuickSearch({ onQuickSearch }) {
     </>
   );
 }
+
+const compare = (prev, next) => JSON.stringify(prev) === JSON.stringify(next);
+
+export default memo(QuickSearch, compare);

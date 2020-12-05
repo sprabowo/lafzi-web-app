@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/core */
-import { useState, Suspense, useEffect, lazy } from "react";
+import { useState, Suspense, useEffect, lazy, memo } from "react";
 import {
   Box,
   PseudoBox,
@@ -11,7 +11,8 @@ import {
 } from "@chakra-ui/core";
 const Footer = lazy(() => import("./Footer"));
 
-export default function Result({ ayats, status, info, onLoadMore }) {
+function Result({ ayats, status, info, onLoadMore }) {
+  console.log(2);
   const [buttonloading, setButtonloading] = useState(false);
   useEffect(() => {
     setButtonloading(false);
@@ -182,3 +183,6 @@ export default function Result({ ayats, status, info, onLoadMore }) {
     </>
   );
 }
+
+const compare = (prev, next) => JSON.stringify(prev) === JSON.stringify(next);
+export default memo(Result, compare);
