@@ -32,7 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "npm install -g @squoosh/cli && node optimizeImage.js",
+    "postbuild": "node optimizeImage.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

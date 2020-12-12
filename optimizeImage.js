@@ -36,10 +36,11 @@ function optimizeAssets(srcDir, targetDir, fileExt) {
             .slice(0, -1)
             .join("/") + "/"
         : "/";
-    var optimizePlus = fileExt === "png" ? "--oxipng" : "--mozjpeg";
+    var optimizePlus =
+      fileExt === "png" ? "--oxipng" : "--mozjpeg '{\"quality\": 85}'";
     try {
       child.execSync(
-        "squoosh-cli --webp '{\"quality\": 90}' ./" +
+        "squoosh-cli --resize --webp --avif ./" +
           totalFiles[i] +
           " -d ./" +
           targetDir +
@@ -49,7 +50,7 @@ function optimizeAssets(srcDir, targetDir, fileExt) {
       child.execSync(
         "squoosh-cli " +
           optimizePlus +
-          " '{\"quality\": 90}' ./" +
+          " ./" +
           totalFiles[i] +
           " -d ./" +
           targetDir +
@@ -62,10 +63,10 @@ function optimizeAssets(srcDir, targetDir, fileExt) {
   }
 }
 
-console.time("startOptimize");
+console.time("Image optimization total time");
 optimizeAssets("public", "build", "jpg");
 optimizeAssets("public", "build", "png");
-console.timeEnd("startOptimize");
+console.timeEnd("Image optimization total time");
 console.log(
   findFilesInDir("public", "jpg").concat(findFilesInDir("public", "png"))
 );
