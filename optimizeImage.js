@@ -2,13 +2,6 @@ var path = require("path"),
   fs = require("fs"),
   child = require("child_process");
 
-/**
- * Find all files recursively in specific folder with specific extension, e.g:
- * findFilesInDir('./project/src', '.html') ==> ['./project/src/a.html','./project/src/build/index.html']
- * @param  {String} startPath    Path relative to this file or other file which requires this files
- * @param  {String} filter       Extension name, e.g: '.html'
- * @return {Array}               Result files with path string in an array
- */
 function findFilesInDir(startPath, filter) {
   var results = [];
 
@@ -46,7 +39,7 @@ function optimizeAssets(srcDir, targetDir, fileExt) {
     var optimizePlus = fileExt === "png" ? "--oxipng" : "--mozjpeg";
     try {
       child.execSync(
-        "npx @squoosh/cli --webp '{\"quality\": 90}' ./" +
+        "squoosh-cli --webp '{\"quality\": 90}' ./" +
           totalFiles[i] +
           " -d ./" +
           targetDir +
@@ -54,7 +47,7 @@ function optimizeAssets(srcDir, targetDir, fileExt) {
         { stdio: "inherit" }
       );
       child.execSync(
-        "npx @squoosh/cli " +
+        "squoosh-cli " +
           optimizePlus +
           " '{\"quality\": 90}' ./" +
           totalFiles[i] +
