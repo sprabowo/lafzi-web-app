@@ -40,18 +40,19 @@ function optimizeAssets(srcDir, targetDir, fileExt) {
       fileExt === "png" ? "--oxipng" : "--mozjpeg '{\"quality\": 85}'";
     try {
       child.execSync(
-        "npx @squoosh/cli --resize --webp --avif ./" +
+        "npx @squoosh/cli ./" +
           totalFiles[i] +
+          " --webp --avif " +
           " -d ./" +
           targetDir +
           OutputFileDir,
         { stdio: "inherit" }
       );
       child.execSync(
-        "npx @squoosh/cli " +
-          optimizePlus +
-          " ./" +
+        "npx @squoosh/cli ./" +
           totalFiles[i] +
+          " " +
+          optimizePlus +
           " -d ./" +
           targetDir +
           OutputFileDir,
