@@ -39,8 +39,17 @@ function optimizeAssets(srcDir, targetDir, fileExt) {
     var optimizePlus =
       fileExt === "png" ? "--oxipng" : "--mozjpeg '{\"quality\": 85}'";
     try {
+      console.log(
+        "running:  $ ",
+        "squoosh-cli ./" +
+          totalFiles[i] +
+          " --webp --avif " +
+          " -d ./" +
+          targetDir +
+          OutputFileDir
+      );
       child.execSync(
-        "npx @squoosh/cli ./" +
+        "squoosh-cli ./" +
           totalFiles[i] +
           " --webp --avif " +
           " -d ./" +
@@ -48,8 +57,18 @@ function optimizeAssets(srcDir, targetDir, fileExt) {
           OutputFileDir,
         { stdio: "inherit" }
       );
+      console.log(
+        "running:  $ ",
+        "squoosh-cli ./" +
+          totalFiles[i] +
+          " " +
+          optimizePlus +
+          " -d ./" +
+          targetDir +
+          OutputFileDir
+      );
       child.execSync(
-        "npx @squoosh/cli ./" +
+        "squoosh-cli ./" +
           totalFiles[i] +
           " " +
           optimizePlus +
